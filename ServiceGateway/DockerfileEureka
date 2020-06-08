@@ -1,0 +1,42 @@
+{
+    "Routes": [
+        {
+            "DownstreamPathTemplate": "/api/ServiceA",
+            "DownstreamScheme": "http",
+            "UpstreamPathTemplate": "/ServiceA",
+            "UseServiceDiscovery": true, 
+            "DownstreamHostAndPorts": [
+                {
+                  "Host": "service-testa",
+                  "Port": 80
+                }
+              ],
+            "UpstreamHttpMethod": [ "Get" ], 
+            "FileCacheOptions": { "TtlSeconds": 15 },
+            "LoadBalancerOptions": { 
+                "Type": "LeastConnection" 
+            }  
+        },
+        {
+            "DownstreamPathTemplate": "/api/ServiceB",
+            "DownstreamScheme": "http",
+            "UpstreamPathTemplate": "/ServiceB",
+            "UseServiceDiscovery": true, 
+            "DownstreamHostAndPorts": [
+                {
+                  "Host": "service-testb",
+                  "Port": 80
+                }
+              ],
+            "UpstreamHttpMethod": [ "Get" ], 
+            "FileCacheOptions": { "TtlSeconds": 15 },
+            "LoadBalancerOptions": { 
+                "Type": "LeastConnection" 
+            }  
+        }
+    ],
+    "GlobalConfiguration": {
+        "baseUrl": "http://localhost:7000",
+        "ServiceDiscoveryProvider": { "Type": "Eureka" } 
+    }
+}

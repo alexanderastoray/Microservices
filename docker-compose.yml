@@ -1,0 +1,42 @@
+version: '3'
+ 
+services:
+    service-gateway :
+        image: servicegateway
+        build:
+            context: ./ServiceGateway
+            dockerfile: Dockerfile
+        expose:
+            - "80"
+        ports:
+            - "7000:80"
+        links:
+            - service-a
+            - service-b
+        networks:
+            - backend
+    service-a:
+        image: servicea
+        build:
+            context: ./ServiceA
+            dockerfile: Dockerfile
+        expose:
+            - "80"
+        ports:
+            - "7001:80"
+        networks:
+            - backend
+    service-b:
+        image: serviceb
+        build:
+            context: ./ServiceB
+            dockerfile: Dockerfile
+        expose:
+            - "80"
+        ports:
+            - "7002:80"
+        networks: 
+            - backend
+networks:
+    backend:
+        driver: "bridge"

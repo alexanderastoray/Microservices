@@ -1,0 +1,29 @@
+{
+    "Routes": [
+        {
+            "DownstreamPathTemplate": "/api/ServiceA",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                  "Host": "service-a",
+                  "Port": 80
+                }
+              ],
+            "UpstreamPathTemplate": "/ServiceA"
+        },
+        {
+            "DownstreamPathTemplate": "/api/ServiceB",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                  "Host": "service-b",
+                  "Port": 80
+                }
+              ],
+            "UpstreamPathTemplate": "/ServiceB"
+        }
+    ],
+    "GlobalConfiguration": {
+        "baseUrl": "http://localhost:7000" 
+    }
+}
